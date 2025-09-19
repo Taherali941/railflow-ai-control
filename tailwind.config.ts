@@ -57,6 +57,30 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Railway Control System Status Colors
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+      },
+      fontFamily: {
+        heading: "var(--font-heading)",
+        body: "var(--font-body)",
+      },
+      backgroundImage: {
+        "gradient-primary": "var(--gradient-primary)",
+        "gradient-status": "var(--gradient-status)",
+        "gradient-alert": "var(--gradient-alert)",
+        "gradient-warning": "var(--gradient-warning)",
+      },
+      boxShadow: {
+        control: "var(--shadow-control)",
+        status: "var(--shadow-status)",
+        alert: "var(--shadow-alert)",
       },
       borderRadius: {
         lg: "var(--radius)",
