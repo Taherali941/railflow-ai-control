@@ -3,7 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Map, Navigation, Clock, Users, AlertCircle, Zap } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Map, Navigation, Clock, Users, AlertCircle, Zap, Search, MapPin, Activity } from "lucide-react";
+import { useState } from "react";
 
 const mockTrains = [
   { id: "TR-001", route: "Central Line", speed: 75, status: "On Time", passengers: 245, nextStation: "Central Station", eta: "14:32" },
@@ -13,6 +15,21 @@ const mockTrains = [
 ];
 
 export default function Tracking() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResult, setSearchResult] = useState<typeof mockTrains[0] | null>(null);
+
+  const handleSearch = () => {
+    const result = mockTrains.find(train => 
+      train.id.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResult(result || null);
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
+    setSearchResult(null);
+  };
+
   return (
     <MainLayout>
       <div className="space-y-6">
@@ -58,63 +75,105 @@ export default function Tracking() {
           </CardContent>
         </Card>
 
-        {/* Active Trains */}
-        <div>
-          <h2 className="text-xl font-semibold mb-4">Active Trains ({mockTrains.length})</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {mockTrains.map((train) => (
-              <Card key={train.id} className="bg-card border-border hover:border-accent transition-colors">
+        {/* Train Search */}
+        <Card className="bg-card border-border">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Search className="h-5 w-5" />
+              Search Train by ID
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex gap-3">
+              <Input
+                placeholder="Enter Train ID (e.g., TR-001)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                className="flex-1"
+              />
+              <Button onClick={handleSearch} className="px-6">
+                <Search className="h-4 w-4 mr-2" />
+                Search
+              </Button>
+              {searchResult && (
+                <Button variant="outline" onClick={handleClearSearch}>
+                  Clear
+                </Button>
+              )}
+            </div>
+
+            {searchResult && (
+              <Card className="bg-gradient-to-br from-accent/5 to-accent/10 border-accent/20">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">{train.id}</CardTitle>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <MapPin className="h-5 w-5 text-accent" />
+                      {searchResult.id}
+                    </CardTitle>
                     <Badge 
-                      variant={train.status === "On Time" ? "default" : train.status === "Delayed" ? "destructive" : "secondary"}
+                      variant={searchResult.status === "On Time" ? "default" : searchResult.status === "Delayed" ? "destructive" : "secondary"}
                       className="gap-1"
                     >
-                      {train.status === "On Time" && <div className="w-2 h-2 bg-status-success rounded-full" />}
-                      {train.status === "Delayed" && <AlertCircle className="h-3 w-3" />}
-                      {train.status === "Stopped" && <div className="w-2 h-2 bg-status-warning rounded-full" />}
-                      {train.status}
+                      {searchResult.status === "On Time" && <div className="w-2 h-2 bg-status-success rounded-full" />}
+                      {searchResult.status === "Delayed" && <AlertCircle className="h-3 w-3" />}
+                      {searchResult.status === "Stopped" && <div className="w-2 h-2 bg-status-warning rounded-full" />}
+                      {searchResult.status}
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">{train.route}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{searchResult.route}</p>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Zap className="h-4 w-4 text-accent" />
-                      <span className="text-sm">Speed</span>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Activity className="h-4 w-4 text-accent" />
+                        <span className="text-sm">Speed</span>
+                      </div>
+                      <span className="font-mono font-semibold text-lg">{searchResult.speed} km/h</span>
                     </div>
-                    <span className="font-mono font-semibold">{train.speed} km/h</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Users className="h-4 w-4 text-accent" />
-                      <span className="text-sm">Passengers</span>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Users className="h-4 w-4 text-accent" />
+                        <span className="text-sm">Passengers</span>
+                      </div>
+                      <span className="font-mono font-semibold text-lg">{searchResult.passengers}</span>
                     </div>
-                    <span className="font-mono font-semibold">{train.passengers}</span>
                   </div>
                   <Separator />
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex items-center gap-2">
-                      <Navigation className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">Next:</span>
-                      <span className="text-sm font-medium">{train.nextStation}</span>
+                      <Navigation className="h-4 w-4 text-accent" />
+                      <span className="text-sm text-muted-foreground">Next Station:</span>
+                      <span className="font-medium">{searchResult.nextStation}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">ETA:</span>
-                      <span className="text-sm font-mono">{train.eta}</span>
+                      <Clock className="h-4 w-4 text-accent" />
+                      <span className="text-sm text-muted-foreground">Estimated Arrival:</span>
+                      <span className="font-mono font-semibold">{searchResult.eta}</span>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm" className="w-full mt-3">
-                    View Details
-                  </Button>
+                  <div className="flex gap-2 pt-2">
+                    <Button className="flex-1">
+                      Track Live
+                    </Button>
+                    <Button variant="outline" className="flex-1">
+                      View History
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </div>
+            )}
+
+            {searchQuery && !searchResult && searchQuery.length > 0 && (
+              <div className="text-center py-8 text-muted-foreground">
+                <Search className="h-12 w-12 mx-auto mb-3 opacity-50" />
+                <p>No train found with ID "{searchQuery}"</p>
+                <p className="text-sm">Please check the train ID and try again</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </MainLayout>
   );
