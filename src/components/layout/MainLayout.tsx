@@ -31,32 +31,6 @@ export function MainLayout({ children }: MainLayoutProps) {
               </div>
 
               <div className="flex items-center gap-2">
-                {/* Emergency Stop Button */}
-                <Button 
-                  variant="destructive" 
-                  size="sm"
-                  className="font-semibold"
-                >
-                  <Power className="h-4 w-4 mr-2" />
-                  EMERGENCY STOP
-                </Button>
-
-                {/* Alerts */}
-                <Button variant="ghost" size="sm" className="relative h-8 w-8 p-0">
-                  <Bell className="h-4 w-4" />
-                  <Badge 
-                    variant="destructive" 
-                    className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs"
-                  >
-                    2
-                  </Badge>
-                </Button>
-
-                {/* Critical Alerts */}
-                <Button variant="ghost" size="sm" className="relative h-8 w-8 p-0">
-                  <AlertTriangle className="h-4 w-4 text-warning" />
-                </Button>
-
                 {/* User Profile */}
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
                   <User className="h-4 w-4" />

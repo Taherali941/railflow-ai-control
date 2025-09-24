@@ -9,7 +9,9 @@ import {
   MessageSquare,
   Settings,
   Power,
-  Shield
+  Shield,
+  Route,
+  AlertCircle
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
@@ -35,6 +37,8 @@ const navigationItems = [
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
   { title: "Alert Management", url: "/alerts", icon: Bell },
   { title: "AI Assistant", url: "/assistant", icon: MessageSquare },
+  { title: "All Routes", url: "/all-routes", icon: Route },
+  { title: "Emergency Control", url: "/emergency", icon: AlertCircle },
 ];
 
 const adminItems = [

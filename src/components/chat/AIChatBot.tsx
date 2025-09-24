@@ -100,7 +100,7 @@ export function AIChatBot() {
   };
 
   return (
-    <Card className="flex flex-col h-[600px] border-border bg-card">
+    <Card className="flex flex-col h-[600px] border-border bg-card sticky top-6">
       <CardHeader className="border-b border-border">
         <CardTitle className="flex items-center gap-2 font-heading">
           <Bot className="h-5 w-5 text-success" />
@@ -112,7 +112,7 @@ export function AIChatBot() {
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="flex-1 flex flex-col p-0">
+      <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
         <ScrollArea className="flex-1 p-4">
           <div className="space-y-4">
             {messages.map((message) => (

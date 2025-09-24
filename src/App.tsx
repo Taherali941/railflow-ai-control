@@ -11,6 +11,8 @@ import Analytics from "./pages/Analytics";
 import Alerts from "./pages/Alerts";
 import Assistant from "./pages/Assistant";
 import Settings from "./pages/Settings";
+import AllRoutes from "./pages/AllRoutes";
+import Emergency from "./pages/Emergency";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/alerts" element={<Alerts />} />
           <Route path="/assistant" element={<Assistant />} />
+          <Route path="/all-routes" element={<AllRoutes />} />
+          <Route path="/emergency" element={<Emergency />} />
           <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

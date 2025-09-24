@@ -63,62 +63,110 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
       </CardHeader>
       
       <CardContent>
-        <div className="relative h-96 w-full overflow-hidden rounded-lg bg-gradient-to-br from-background to-muted border border-border">
+        <div className="relative h-[480px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-background via-muted/20 to-muted border border-border shadow-inner">
+          {/* Background grid pattern */}
+          <svg className="absolute inset-0 h-full w-full opacity-20">
+            <defs>
+              <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--border))" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+
           {/* Railway Lines */}
           <svg className="absolute inset-0 h-full w-full">
-            {/* Main horizontal line */}
+            {/* Main horizontal railway line with glow */}
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge> 
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
             <line 
               x1="5%" y1="50%" x2="95%" y2="50%" 
-              stroke="hsl(var(--border))" 
-              strokeWidth="3"
-              strokeDasharray="0"
+              stroke="hsl(var(--primary))" 
+              strokeWidth="4"
+              filter="url(#glow)"
             />
             
-            {/* Branch lines */}
+            {/* Branch lines with enhanced styling */}
             <line 
               x1="30%" y1="50%" x2="30%" y2="20%" 
-              stroke="hsl(var(--border))" 
-              strokeWidth="2"
+              stroke="hsl(var(--primary))" 
+              strokeWidth="3"
+              strokeOpacity="0.8"
             />
             <line 
               x1="70%" y1="50%" x2="70%" y2="80%" 
-              stroke="hsl(var(--border))" 
-              strokeWidth="2"
+              stroke="hsl(var(--primary))" 
+              strokeWidth="3"
+              strokeOpacity="0.8"
             />
             <line 
               x1="50%" y1="50%" x2="85%" y2="25%" 
-              stroke="hsl(var(--border))" 
-              strokeWidth="2"
+              stroke="hsl(var(--primary))" 
+              strokeWidth="3"
+              strokeOpacity="0.8"
+            />
+            <line 
+              x1="20%" y1="50%" x2="15%" y2="75%" 
+              stroke="hsl(var(--primary))" 
+              strokeWidth="3"
+              strokeOpacity="0.8"
             />
             
-            {/* Stations */}
-            <circle cx="10%" cy="50%" r="4" fill="hsl(var(--muted-foreground))" />
-            <circle cx="30%" cy="50%" r="4" fill="hsl(var(--muted-foreground))" />
-            <circle cx="50%" cy="50%" r="4" fill="hsl(var(--muted-foreground))" />
-            <circle cx="70%" cy="50%" r="4" fill="hsl(var(--muted-foreground))" />
-            <circle cx="90%" cy="50%" r="4" fill="hsl(var(--muted-foreground))" />
+            {/* Enhanced Stations with glow */}
+            <circle cx="10%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="30%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="50%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="70%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="90%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="30%" cy="20%" r="5" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="70%" cy="80%" r="5" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="85%" cy="25%" r="5" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="15%" cy="75%" r="5" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
             
-            {/* Train markers with animation */}
+            {/* Enhanced Train markers with animation and glow */}
             {activeTrains.map((train) => (
               <g key={train.id}>
                 <circle
                   cx={`${train.x}%`}
                   cy={`${train.y}%`}
-                  r="6"
-                  className={`${getTrainColor(train.status)} stroke-background stroke-2`}
+                  r="8"
+                  className={`${getTrainColor(train.status)} stroke-background stroke-2 drop-shadow-lg`}
                   style={{
-                    animation: train.status === "moving" ? "data-flow 2s infinite" : "none"
+                    animation: train.status === "moving" ? "pulse 2s infinite" : "none",
+                    filter: train.status === "moving" ? "drop-shadow(0 0 6px currentColor)" : "none"
                   }}
                 />
                 <text
                   x={`${train.x}%`}
-                  y={`${train.y - 8}%`}
+                  y={`${train.y - 12}%`}
                   textAnchor="middle"
-                  className="fill-foreground text-xs font-mono font-medium"
-                  style={{ fontSize: '10px' }}
+                  className="fill-foreground text-xs font-mono font-bold drop-shadow-sm"
+                  style={{ fontSize: '11px' }}
                 >
                   {train.trainNumber}
                 </text>
+                {train.status === "moving" && (
+                  <circle
+                    cx={`${train.x}%`}
+                    cy={`${train.y}%`}
+                    r="12"
+                    fill="none"
+                    stroke="hsl(var(--success))"
+                    strokeWidth="1"
+                    strokeOpacity="0.3"
+                    style={{
+                      animation: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite"
+                    }}
+                  />
+                )}
               </g>
             ))}
           </svg>
