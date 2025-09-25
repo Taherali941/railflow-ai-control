@@ -103,7 +103,7 @@ const Emergency = () => {
           </CardContent>
         </Card>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* System Status */}
           <Card>
             <CardHeader>
@@ -128,6 +128,47 @@ const Emergency = () => {
                     </Badge>
                   </div>
                 ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* AI Suggestions */}
+          <Card className="border-primary/20 bg-primary/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-primary">
+                <AlertCircle className="h-5 w-5" />
+                AI Emergency Alerts
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="p-3 rounded-lg bg-warning/10 border border-warning/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <AlertTriangle className="h-4 w-4 text-warning" />
+                    <span className="font-medium text-sm">Weather Alert</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Heavy rainfall detected on Eastern route. Consider speed restrictions for TR-003.
+                  </p>
+                </div>
+                <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <AlertCircle className="h-4 w-4 text-destructive" />
+                    <span className="font-medium text-sm">Signal Warning</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Junction 4B showing intermittent signal failures. Emergency protocols may be required.
+                  </p>
+                </div>
+                <div className="p-3 rounded-lg bg-blue-50 border border-blue-200">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Shield className="h-4 w-4 text-blue-600" />
+                    <span className="font-medium text-sm">Preventive</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    All emergency systems operational. No immediate threats detected.
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>

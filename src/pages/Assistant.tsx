@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -39,6 +40,50 @@ const chatHistory = [
 ];
 
 export default function Assistant() {
+  const [messages, setMessages] = useState(chatHistory);
+  const [inputMessage, setInputMessage] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+
+  const handleSendMessage = async () => {
+    if (!inputMessage.trim()) return;
+
+    const newMessage = {
+      type: "user" as const,
+      message: inputMessage,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setMessages(prev => [...prev, newMessage]);
+    setInputMessage("");
+    setIsTyping(true);
+
+    // Simulate AI response
+    setTimeout(() => {
+      const aiResponse = {
+        type: "assistant" as const,
+        message: generateAIResponse(inputMessage),
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      setMessages(prev => [...prev, aiResponse]);
+      setIsTyping(false);
+    }, 1500);
+  };
+
+  const generateAIResponse = (query: string): string => {
+    const responses = [
+      "I understand your query. Based on current system data, I recommend checking the real-time dashboard for the latest updates.",
+      "Let me analyze the current railway operations... I've found some optimization opportunities that could improve efficiency by 12%.",
+      "According to the latest data, all systems are operating within normal parameters. Would you like me to provide a detailed status report?",
+      "I've processed your request and identified potential improvements. The suggested changes could reduce delays by up to 8 minutes.",
+      "Based on historical patterns and current conditions, I recommend implementing route optimization on the Northern line."
+    ];
+    return responses[Math.floor(Math.random() * responses.length)];
+  };
+
+  const handleQuickQuery = (query: string) => {
+    setInputMessage(query);
+  };
+
   return (
     <MainLayout>
       <div className="space-y-6">
@@ -70,7 +115,7 @@ export default function Assistant() {
               <CardContent className="flex-1 flex flex-col p-0">
                 {/* Chat Messages */}
                 <div className="flex-1 overflow-auto p-4 space-y-4">
-                  {chatHistory.map((message, index) => (
+                  {messages.map((message, index) => (
                     <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                       <div className={`max-w-[80%] rounded-lg p-3 ${
                         message.type === 'user' 
@@ -82,6 +127,17 @@ export default function Assistant() {
                       </div>
                     </div>
                   ))}
+                  {isTyping && (
+                    <div className="flex justify-start">
+                      <div className="bg-muted text-muted-foreground rounded-lg p-3 mr-4">
+                        <div className="flex items-center gap-1">
+                          <div className="w-2 h-2 bg-current rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-current rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                          <div className="w-2 h-2 bg-current rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Chat Input */}
@@ -90,11 +146,14 @@ export default function Assistant() {
                     <Input 
                       placeholder="Ask me anything about railway operations..."
                       className="flex-1"
+                      value={inputMessage}
+                      onChange={(e) => setInputMessage(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                     />
-                    <Button size="sm">
+                    <Button size="sm" variant="outline">
                       <Mic className="h-4 w-4" />
                     </Button>
-                    <Button size="sm">
+                    <Button size="sm" onClick={handleSendMessage} disabled={!inputMessage.trim()}>
                       <Send className="h-4 w-4" />
                     </Button>
                   </div>
@@ -117,6 +176,7 @@ export default function Assistant() {
                     variant="outline" 
                     size="sm" 
                     className="w-full justify-start text-left h-auto p-3"
+                    onClick={() => handleQuickQuery(query)}
                   >
                     <span className="text-xs">{query}</span>
                   </Button>

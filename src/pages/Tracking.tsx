@@ -154,7 +154,7 @@ export default function Tracking() {
                     </div>
                   </div>
                   <div className="flex gap-2 pt-2">
-                    <Button className="flex-1">
+                    <Button className="flex-1" onClick={() => window.location.href = `/train-details/${searchResult.id}`}>
                       Track Live
                     </Button>
                     <Button variant="outline" className="flex-1">

@@ -137,7 +137,7 @@ const TrainDetails = () => {
               Live GPS Location
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
             <div className="bg-muted/20 rounded-lg p-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -147,6 +147,19 @@ const TrainDetails = () => {
                 <div>
                   <p className="text-sm text-muted-foreground">Coordinates</p>
                   <p className="font-mono text-xs">{trainData.gpsLocation.lat}, {trainData.gpsLocation.lng}</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Live Map */}
+            <div className="aspect-video bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 rounded-lg border border-border p-6 flex items-center justify-center">
+              <div className="text-center space-y-3">
+                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+                  <MapPin className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">Live GPS Tracking</h3>
+                  <p className="text-sm text-muted-foreground">Real-time train position on railway network</p>
                 </div>
               </div>
             </div>
