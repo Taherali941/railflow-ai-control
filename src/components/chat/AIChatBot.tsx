@@ -100,7 +100,7 @@ export function AIChatBot() {
   };
 
   return (
-    <Card className="flex flex-col h-[600px] border-border bg-card sticky top-6">
+    <Card className="flex flex-col h-[600px] border-border bg-card relative">
       <CardHeader className="border-b border-border">
         <CardTitle className="flex items-center gap-2 font-heading">
           <Bot className="h-5 w-5 text-success" />

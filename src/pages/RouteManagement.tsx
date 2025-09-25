@@ -34,7 +34,7 @@ const RouteManagement = () => {
 
   return (
     <MainLayout>
-      <div className="space-y-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen text-white p-6 -m-6">
+      <div className="space-y-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen text-foreground p-6 -m-6">
         {/* Header */}
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
@@ -42,47 +42,47 @@ const RouteManagement = () => {
             Back
           </Button>
           <div>
-            <h1 className="text-2xl font-bold">Route Management - {trainId}</h1>
+            <h1 className="text-2xl font-bold text-foreground">Route Management - {trainId}</h1>
             <p className="text-muted-foreground">Optimize train routing and track selection</p>
           </div>
         </div>
 
         {/* Route Management */}
-        <Card className="bg-gray-800 border-gray-700 text-white">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-white">
+            <CardTitle className="flex items-center gap-2 text-card-foreground">
               <Route className="h-5 w-5" />
               Current Route Management
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-blue-900/50 rounded-lg border border-blue-700">
-                <MapPin className="h-6 w-6 text-blue-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-300">Current Track</p>
-                <p className="font-bold text-white">Main Line A</p>
+              <div className="text-center p-4 bg-primary/20 rounded-lg border border-primary/30">
+                <MapPin className="h-6 w-6 text-primary mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground">Current Track</p>
+                <p className="font-bold text-card-foreground">Main Line A</p>
               </div>
-              <div className="text-center p-4 bg-green-900/50 rounded-lg border border-green-700">
-                <Clock className="h-6 w-6 text-green-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-300">ETA to Destination</p>
-                <p className="font-bold text-white">14:23</p>
+              <div className="text-center p-4 bg-success/20 rounded-lg border border-success/30">
+                <Clock className="h-6 w-6 text-success mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground">ETA to Destination</p>
+                <p className="font-bold text-card-foreground">14:23</p>
               </div>
-              <div className="text-center p-4 bg-orange-900/50 rounded-lg border border-orange-700">
-                <Zap className="h-6 w-6 text-orange-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-300">Route Efficiency</p>
-                <p className="font-bold text-white">89%</p>
+              <div className="text-center p-4 bg-warning/20 rounded-lg border border-warning/30">
+                <Zap className="h-6 w-6 text-warning mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground">Route Efficiency</p>
+                <p className="font-bold text-card-foreground">89%</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Live Map */}
-        <Card className="bg-gray-800 border-gray-700 text-white">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Live Route Map</CardTitle>
+            <CardTitle className="text-card-foreground">Live Route Map</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-lg border border-gray-700 relative overflow-hidden">
+            <div className="h-64 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-lg border border-border relative overflow-hidden">
               {/* Simplified map visualization */}
               <svg className="absolute inset-0 w-full h-full">
                 {/* Current route */}
@@ -93,16 +93,16 @@ const RouteManagement = () => {
                 <line x1="30%" y1="50%" x2="80%" y2="70%" stroke="rgb(156 163 175)" strokeWidth="2" strokeDasharray="5,5" />
                 
                 {/* Train position */}
-                <circle cx="40%" cy="50%" r="6" fill="rgb(34 197 94)" stroke="white" strokeWidth="2" />
-                <text x="40%" y="35%" textAnchor="middle" className="fill-gray-800 text-xs font-bold">{trainId}</text>
+                <circle cx="40%" cy="50%" r="6" fill="rgb(34 197 94)" stroke="hsl(var(--card-foreground))" strokeWidth="2" />
+                <text x="40%" y="35%" textAnchor="middle" className="fill-card-foreground text-xs font-bold">{trainId}</text>
                 
                 {/* Stations */}
-                <circle cx="20%" cy="50%" r="4" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-                <circle cx="60%" cy="50%" r="4" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-                <circle cx="80%" cy="50%" r="4" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+                <circle cx="20%" cy="50%" r="4" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="60%" cy="50%" r="4" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="80%" cy="50%" r="4" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
               </svg>
               
-              <div className="absolute bottom-2 left-2 bg-white/90 rounded px-2 py-1 text-xs">
+              <div className="absolute bottom-2 left-2 bg-card/90 text-card-foreground rounded px-2 py-1 text-xs backdrop-blur-sm border border-border">
                 <span className="text-blue-600">● Current Route</span>
                 <span className="text-gray-500 ml-3">- - Alternative Routes</span>
               </div>
@@ -157,7 +157,7 @@ const RouteManagement = () => {
                 <div key={suggestion.id} className="border rounded-lg p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-medium">{suggestion.route}</h4>
-                    <Badge className="bg-blue-600 text-white">AI Recommended</Badge>
+                    <Badge className="bg-primary text-primary-foreground">AI Recommended</Badge>
                   </div>
                   <div className="grid grid-cols-3 gap-4 mb-3">
                     <div>

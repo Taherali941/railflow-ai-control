@@ -71,19 +71,19 @@ export default function Tracking() {
                 {/* Train positions */}
                 {mockTrains.map((train, index) => (
                   <g key={train.id}>
-                    <circle cx={`${20 + index * 20}%`} cy="50%" r="4" fill="rgb(59 130 246)" stroke="white" strokeWidth="2" className="cursor-pointer hover:r-6 transition-all" />
-                    <text x={`${20 + index * 20}%`} y="40%" textAnchor="middle" className="fill-white text-xs font-bold">{train.id}</text>
+                    <circle cx={`${20 + index * 20}%`} cy="50%" r="4" fill="rgb(59 130 246)" stroke="hsl(var(--card-foreground))" strokeWidth="2" className="cursor-pointer hover:r-6 transition-all" />
+                    <text x={`${20 + index * 20}%`} y="40%" textAnchor="middle" className="fill-card-foreground text-xs font-bold">{train.id}</text>
                   </g>
                 ))}
                 
                 {/* Stations */}
-                <circle cx="20%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
-                <circle cx="40%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
-                <circle cx="60%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
-                <circle cx="80%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="20%" cy="50%" r="4" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="40%" cy="50%" r="4" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="60%" cy="50%" r="4" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="80%" cy="50%" r="4" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
               </svg>
               
-              <div className="absolute bottom-2 left-2 bg-black/50 text-white rounded px-2 py-1 text-xs">
+              <div className="absolute bottom-2 left-2 bg-card/90 text-card-foreground rounded px-2 py-1 text-xs backdrop-blur-sm border border-border">
                 Interactive Map - Click trains for details
               </div>
             </div>

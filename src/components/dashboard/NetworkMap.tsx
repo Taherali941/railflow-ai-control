@@ -121,15 +121,15 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
             />
             
             {/* Enhanced Stations with glow */}
-            <circle cx="10%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-            <circle cx="30%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-            <circle cx="50%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-            <circle cx="70%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-            <circle cx="90%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-            <circle cx="30%" cy="20%" r="5" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-            <circle cx="70%" cy="80%" r="5" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-            <circle cx="85%" cy="25%" r="5" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
-            <circle cx="15%" cy="75%" r="5" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="10%" cy="50%" r="6" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+            <circle cx="30%" cy="50%" r="6" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+            <circle cx="50%" cy="50%" r="6" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+            <circle cx="70%" cy="50%" r="6" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+            <circle cx="90%" cy="50%" r="6" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+            <circle cx="30%" cy="20%" r="5" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+            <circle cx="70%" cy="80%" r="5" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+            <circle cx="85%" cy="25%" r="5" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
+            <circle cx="15%" cy="75%" r="5" fill="hsl(var(--card))" stroke="rgb(34 197 94)" strokeWidth="2" />
             
             {/* Enhanced Train markers with animation and glow */}
             {activeTrains.map((train) => (
@@ -138,7 +138,7 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
                   cx={`${train.x}%`}
                   cy={`${train.y}%`}
                   r="8"
-                  className={`${getTrainColor(train.status)} stroke-white stroke-2 drop-shadow-lg`}
+                  className={`${getTrainColor(train.status)} stroke-card stroke-2 drop-shadow-lg`}
                   style={{
                     animation: train.status === "moving" ? "pulse 2s infinite" : "none",
                     filter: train.status === "moving" ? "drop-shadow(0 0 6px currentColor)" : "none"
@@ -149,7 +149,7 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
                   x={`${train.x}%`}
                   y={`${train.y - 12}%`}
                   textAnchor="middle"
-                  className="fill-white text-xs font-mono font-bold drop-shadow-md"
+                  className="fill-card-foreground text-xs font-mono font-bold drop-shadow-md"
                   style={{ fontSize: '11px' }}
                   onClick={() => window.location.href = `/train-details/${train.id}`}
                 >
@@ -174,28 +174,28 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
           </svg>
           
           {/* Legend */}
-          <div className="absolute bottom-4 left-4 rounded-lg bg-white/90 border border-slate-300 p-3 backdrop-blur-sm shadow-lg">
+          <div className="absolute bottom-4 left-4 rounded-lg bg-card/90 border border-border p-3 backdrop-blur-sm shadow-lg">
             <div className="space-y-2 text-xs">
               <div className="flex items-center gap-2">
                 <div className="h-3 w-3 rounded-full bg-green-500" />
-                <span className="text-gray-700">Moving</span>
+                <span className="text-card-foreground">Moving</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-3 w-3 rounded-full bg-orange-500" />
-                <span className="text-gray-700">Delayed</span>
+                <span className="text-card-foreground">Delayed</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-3 w-3 rounded-full bg-red-500" />
-                <span className="text-gray-700">Stopped</span>
+                <span className="text-card-foreground">Stopped</span>
               </div>
             </div>
           </div>
           
           {/* Status overlay */}
-          <div className="absolute top-4 right-4 rounded-lg bg-white/90 border border-slate-300 p-3 backdrop-blur-sm shadow-lg">
+          <div className="absolute top-4 right-4 rounded-lg bg-card/90 border border-border p-3 backdrop-blur-sm shadow-lg">
             <div className="text-xs">
-              <div className="font-medium text-gray-900">Active Trains: {activeTrains.length}</div>
-              <div className="text-gray-600">Last Update: Live</div>
+              <div className="font-medium text-card-foreground">Active Trains: {activeTrains.length}</div>
+              <div className="text-muted-foreground">Last Update: Live</div>
             </div>
           </div>
         </div>

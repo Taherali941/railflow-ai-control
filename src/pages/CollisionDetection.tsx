@@ -162,7 +162,7 @@ export default function CollisionDetection() {
             <div className="border border-border rounded-lg p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-medium">Speed Reduction Protocol</h4>
-                <Badge className="bg-blue-600 text-white">AI Recommended</Badge>
+                <Badge className="bg-primary text-primary-foreground">AI Recommended</Badge>
               </div>
               <p className="text-sm text-muted-foreground mb-3">Implement automatic speed reduction when trains approach within 2km of each other</p>
               <Button size="sm">Apply Suggestion</Button>
@@ -170,7 +170,7 @@ export default function CollisionDetection() {
             <div className="border border-border rounded-lg p-4 bg-gradient-to-r from-green-50 to-emerald-50">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-medium">Route Optimization</h4>
-                <Badge className="bg-green-600 text-white">AI Recommended</Badge>
+                <Badge className="bg-success text-success-foreground">AI Recommended</Badge>
               </div>
               <p className="text-sm text-muted-foreground mb-3">Reroute TR-008 via alternative track to prevent potential conflict</p>
               <Button size="sm">Apply Suggestion</Button>
