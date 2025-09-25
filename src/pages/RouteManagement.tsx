@@ -154,19 +154,19 @@ const RouteManagement = () => {
           <CardContent>
             <div className="space-y-4">
               {aiSuggestions.map((suggestion) => (
-                <div key={suggestion.id} className="border rounded-lg p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
+                <div key={suggestion.id} className="border border-accent/20 rounded-lg p-4 bg-accent/10 hover:bg-accent/20 transition-colors">
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-medium">{suggestion.route}</h4>
+                    <h4 className="font-medium text-card-foreground">{suggestion.route}</h4>
                     <Badge className="bg-primary text-primary-foreground">AI Recommended</Badge>
                   </div>
                   <div className="grid grid-cols-3 gap-4 mb-3">
                     <div>
                       <p className="text-sm text-muted-foreground">Estimated Time</p>
-                      <p className="font-bold">{suggestion.estimatedTime}</p>
+                      <p className="font-bold text-card-foreground">{suggestion.estimatedTime}</p>
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Efficiency</p>
-                      <p className="font-bold">{suggestion.efficiency}</p>
+                      <p className="font-bold text-card-foreground">{suggestion.efficiency}</p>
                     </div>
                     <div className="flex justify-end">
                       <Button size="sm">Apply Route</Button>
