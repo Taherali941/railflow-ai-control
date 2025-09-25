@@ -14,6 +14,9 @@ import Settings from "./pages/Settings";
 import AllRoutes from "./pages/AllRoutes";
 import Emergency from "./pages/Emergency";
 import NotFound from "./pages/NotFound";
+import TrainDetails from "./pages/TrainDetails";
+import TrainChat from "./pages/TrainChat";
+import RouteManagement from "./pages/RouteManagement";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +37,9 @@ const App = () => (
           <Route path="/all-routes" element={<AllRoutes />} />
           <Route path="/emergency" element={<Emergency />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/train-details/:trainId" element={<TrainDetails />} />
+          <Route path="/train-chat/:trainId" element={<TrainChat />} />
+          <Route path="/route-management/:trainId" element={<RouteManagement />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

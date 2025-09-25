@@ -8,8 +8,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Map, Navigation, Clock, Users, AlertCircle, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
   // Mock train data for demonstration  
   const trainData = [
     {
@@ -97,58 +99,12 @@ const Index = () => {
 
         {/* Active Trains */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">Active Trains ({mockTrains.length})</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {mockTrains.map((train) => (
-              <Card key={train.id} className="bg-card border-border hover:border-accent transition-colors group">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">{train.id}</CardTitle>
-                    <Badge 
-                      variant={train.status === "On Time" ? "default" : train.status === "Delayed" ? "destructive" : "secondary"}
-                      className="gap-1"
-                    >
-                      {train.status === "On Time" && <div className="w-2 h-2 bg-status-success rounded-full" />}
-                      {train.status === "Delayed" && <AlertCircle className="h-3 w-3" />}
-                      {train.status === "Stopped" && <div className="w-2 h-2 bg-status-warning rounded-full" />}
-                      {train.status}
-                    </Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{train.route}</p>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Zap className="h-4 w-4 text-accent" />
-                      <span className="text-sm">Speed</span>
-                    </div>
-                    <span className="font-mono font-semibold">{train.speed} km/h</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Users className="h-4 w-4 text-accent" />
-                      <span className="text-sm">Passengers</span>
-                    </div>
-                    <span className="font-mono font-semibold">{train.passengers}</span>
-                  </div>
-                  <Separator />
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <Navigation className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">Next:</span>
-                      <span className="text-sm font-medium">{train.nextStation}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">ETA:</span>
-                      <span className="text-sm font-mono">{train.eta}</span>
-                    </div>
-                  </div>
-                  <Button variant="outline" size="sm" className="w-full mt-3 group-hover:bg-accent/10">
-                    View Details
-                  </Button>
-                </CardContent>
-              </Card>
+          <h2 className="text-xl font-semibold mb-4">Active Trains ({trainData.length})</h2>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {trainData.map((train) => (
+              <div key={train.trainId} onClick={() => navigate(`/train-details/${train.trainId}`)} className="cursor-pointer">
+                <TrainStatusCard {...train} />
+              </div>
             ))}
           </div>
         </div>

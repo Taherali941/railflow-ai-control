@@ -28,10 +28,10 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
 
   const getTrainColor = (status: string) => {
     switch (status) {
-      case "moving": return "fill-success";
-      case "delayed": return "fill-warning";
-      case "stopped": return "fill-destructive";
-      default: return "fill-muted";
+      case "moving": return "fill-green-500";
+      case "delayed": return "fill-orange-500";
+      case "stopped": return "fill-red-500";
+      default: return "fill-gray-400";
     }
   };
 
@@ -63,12 +63,12 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
       </CardHeader>
       
       <CardContent>
-        <div className="relative h-[480px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-background via-muted/20 to-muted border border-border shadow-inner">
+        <div className="relative h-[480px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 border border-slate-300 shadow-inner">
           {/* Background grid pattern */}
           <svg className="absolute inset-0 h-full w-full opacity-20">
             <defs>
               <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--border))" strokeWidth="1"/>
+                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgb(203 213 225)" strokeWidth="1"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
@@ -89,7 +89,7 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
             
             <line 
               x1="5%" y1="50%" x2="95%" y2="50%" 
-              stroke="hsl(var(--primary))" 
+              stroke="rgb(59 130 246)" 
               strokeWidth="4"
               filter="url(#glow)"
             />
@@ -97,39 +97,39 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
             {/* Branch lines with enhanced styling */}
             <line 
               x1="30%" y1="50%" x2="30%" y2="20%" 
-              stroke="hsl(var(--primary))" 
+              stroke="rgb(59 130 246)" 
               strokeWidth="3"
               strokeOpacity="0.8"
             />
             <line 
               x1="70%" y1="50%" x2="70%" y2="80%" 
-              stroke="hsl(var(--primary))" 
+              stroke="rgb(59 130 246)" 
               strokeWidth="3"
               strokeOpacity="0.8"
             />
             <line 
               x1="50%" y1="50%" x2="85%" y2="25%" 
-              stroke="hsl(var(--primary))" 
+              stroke="rgb(59 130 246)" 
               strokeWidth="3"
               strokeOpacity="0.8"
             />
             <line 
               x1="20%" y1="50%" x2="15%" y2="75%" 
-              stroke="hsl(var(--primary))" 
+              stroke="rgb(59 130 246)" 
               strokeWidth="3"
               strokeOpacity="0.8"
             />
             
             {/* Enhanced Stations with glow */}
-            <circle cx="10%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <circle cx="30%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <circle cx="50%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <circle cx="70%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <circle cx="90%" cy="50%" r="6" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <circle cx="30%" cy="20%" r="5" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <circle cx="70%" cy="80%" r="5" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <circle cx="85%" cy="25%" r="5" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <circle cx="15%" cy="75%" r="5" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2" />
+            <circle cx="10%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="30%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="50%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="70%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="90%" cy="50%" r="6" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="30%" cy="20%" r="5" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="70%" cy="80%" r="5" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="85%" cy="25%" r="5" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
+            <circle cx="15%" cy="75%" r="5" fill="white" stroke="rgb(59 130 246)" strokeWidth="2" />
             
             {/* Enhanced Train markers with animation and glow */}
             {activeTrains.map((train) => (
@@ -148,7 +148,7 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
                   x={`${train.x}%`}
                   y={`${train.y - 12}%`}
                   textAnchor="middle"
-                  className="fill-foreground text-xs font-mono font-bold drop-shadow-sm"
+                  className="fill-gray-800 text-xs font-mono font-bold drop-shadow-sm"
                   style={{ fontSize: '11px' }}
                 >
                   {train.trainNumber}
@@ -159,7 +159,7 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
                     cy={`${train.y}%`}
                     r="12"
                     fill="none"
-                    stroke="hsl(var(--success))"
+                    stroke="rgb(34 197 94)"
                     strokeWidth="1"
                     strokeOpacity="0.3"
                     style={{
@@ -172,28 +172,28 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
           </svg>
           
           {/* Legend */}
-          <div className="absolute bottom-4 left-4 rounded-lg bg-card/90 border border-border p-3 backdrop-blur-sm">
+          <div className="absolute bottom-4 left-4 rounded-lg bg-white/90 border border-slate-300 p-3 backdrop-blur-sm shadow-lg">
             <div className="space-y-2 text-xs">
               <div className="flex items-center gap-2">
-                <div className="h-3 w-3 rounded-full bg-success" />
-                <span>Moving</span>
+                <div className="h-3 w-3 rounded-full bg-green-500" />
+                <span className="text-gray-700">Moving</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-3 w-3 rounded-full bg-warning" />
-                <span>Delayed</span>
+                <div className="h-3 w-3 rounded-full bg-orange-500" />
+                <span className="text-gray-700">Delayed</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-3 w-3 rounded-full bg-destructive" />
-                <span>Stopped</span>
+                <div className="h-3 w-3 rounded-full bg-red-500" />
+                <span className="text-gray-700">Stopped</span>
               </div>
             </div>
           </div>
           
           {/* Status overlay */}
-          <div className="absolute top-4 right-4 rounded-lg bg-card/90 border border-border p-3 backdrop-blur-sm">
+          <div className="absolute top-4 right-4 rounded-lg bg-white/90 border border-slate-300 p-3 backdrop-blur-sm shadow-lg">
             <div className="text-xs">
-              <div className="font-medium text-foreground">Active Trains: {activeTrains.length}</div>
-              <div className="text-muted-foreground">Last Update: Live</div>
+              <div className="font-medium text-gray-900">Active Trains: {activeTrains.length}</div>
+              <div className="text-gray-600">Last Update: Live</div>
             </div>
           </div>
         </div>
