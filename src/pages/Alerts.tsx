@@ -197,17 +197,17 @@ export default function Alerts() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="border border-border rounded-lg p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
+            <div className="border border-border rounded-lg p-4 bg-accent/10 hover:bg-accent/20 transition-colors">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="font-medium">Predictive Maintenance Alert</h4>
+                <h4 className="font-medium text-card-foreground">Predictive Maintenance Alert</h4>
                 <Badge className="bg-primary text-primary-foreground">AI Predicted</Badge>
               </div>
               <p className="text-sm text-muted-foreground mb-3">Track sensor on Eastern Line showing early wear patterns - suggest maintenance in 72 hours</p>
               <Button size="sm">Create Alert</Button>
             </div>
-            <div className="border border-border rounded-lg p-4 bg-gradient-to-r from-orange-50 to-red-50">
+            <div className="border border-border rounded-lg p-4 bg-warning/10 hover:bg-warning/20 transition-colors">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="font-medium">Weather Impact Warning</h4>
+                <h4 className="font-medium text-card-foreground">Weather Impact Warning</h4>
                 <Badge className="bg-warning text-warning-foreground">AI Suggested</Badge>
               </div>
               <p className="text-sm text-muted-foreground mb-3">Heavy rainfall predicted in 6 hours - recommend speed restrictions for Northern routes</p>

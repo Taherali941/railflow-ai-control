@@ -190,16 +190,16 @@ const TrainDetails = () => {
           <CardContent>
             <div className="space-y-3">
               {trainData.schedule.map((stop, index) => (
-                <div key={index} className={`flex items-center justify-between p-4 rounded-lg ${
-                  stop.status === 'current' ? 'bg-blue-50 border border-blue-200' :
-                  stop.status === 'completed' ? 'bg-green-50 border border-green-200' :
-                  'bg-muted/20'
+                <div key={index} className={`flex items-center justify-between p-4 rounded-lg border transition-colors ${
+                  stop.status === 'current' ? 'bg-accent/10 border-accent/30 hover:bg-accent/20' :
+                  stop.status === 'completed' ? 'bg-success/10 border-success/30 hover:bg-success/20' :
+                  'bg-muted/20 border-border hover:bg-muted/30'
                 }`}>
                   <div className="flex items-center gap-3">
-                    <div className={`w-3 h-3 rounded-full ${
-                      stop.status === 'current' ? 'bg-blue-500' :
-                      stop.status === 'completed' ? 'bg-green-500' :
-                      'bg-gray-300'
+                    <div className={`w-3 h-3 rounded-full shadow-sm ${
+                      stop.status === 'current' ? 'bg-accent shadow-accent/30' :
+                      stop.status === 'completed' ? 'bg-success shadow-success/30' :
+                      'bg-muted-foreground/50'
                     }`} />
                     <div>
                       <p className="font-medium">{stop.station}</p>

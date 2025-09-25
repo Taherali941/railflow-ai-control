@@ -177,20 +177,20 @@ export default function Scheduling() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-3 gap-4 mb-4">
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <TrendingUp className="h-6 w-6 text-blue-600 mx-auto mb-2" />
+              <div className="text-center p-4 bg-accent/10 border border-accent/20 rounded-lg hover:bg-accent/20 transition-colors">
+                <TrendingUp className="h-6 w-6 text-accent mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground">Efficiency Gain</p>
-                <p className="font-bold">+12%</p>
+                <p className="font-bold text-card-foreground">+12%</p>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <Clock className="h-6 w-6 text-green-600 mx-auto mb-2" />
+              <div className="text-center p-4 bg-success/10 border border-success/20 rounded-lg hover:bg-success/20 transition-colors">
+                <Clock className="h-6 w-6 text-success mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground">Time Saved</p>
-                <p className="font-bold">8.5 min</p>
+                <p className="font-bold text-card-foreground">8.5 min</p>
               </div>
-              <div className="text-center p-4 bg-orange-50 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-orange-600 mx-auto mb-2" />
+              <div className="text-center p-4 bg-warning/10 border border-warning/20 rounded-lg hover:bg-warning/20 transition-colors">
+                <CheckCircle className="h-6 w-6 text-warning mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground">On-Time Rate</p>
-                <p className="font-bold">96.2%</p>
+                <p className="font-bold text-card-foreground">96.2%</p>
               </div>
             </div>
             <Button className="w-full">Apply Optimized Schedule</Button>
