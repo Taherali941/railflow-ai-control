@@ -61,15 +61,30 @@ export default function Tracking() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="aspect-video bg-gradient-to-br from-background via-muted/20 to-background rounded-lg border border-border p-8 flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <div className="mx-auto w-16 h-16 bg-gradient-status rounded-full flex items-center justify-center">
-                  <Map className="h-8 w-8 text-background" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground">Interactive Map</h3>
-                  <p className="text-muted-foreground">Live train positions and route visualization</p>
-                </div>
+            <div className="aspect-video bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 rounded-lg border border-blue-700 relative overflow-hidden">
+              <svg className="absolute inset-0 w-full h-full">
+                {/* Railway lines */}
+                <line x1="10%" y1="50%" x2="90%" y2="50%" stroke="rgb(34 197 94)" strokeWidth="3" />
+                <line x1="30%" y1="50%" x2="30%" y2="20%" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <line x1="70%" y1="50%" x2="70%" y2="80%" stroke="rgb(34 197 94)" strokeWidth="2" />
+                
+                {/* Train positions */}
+                {mockTrains.map((train, index) => (
+                  <g key={train.id}>
+                    <circle cx={`${20 + index * 20}%`} cy="50%" r="4" fill="rgb(59 130 246)" stroke="white" strokeWidth="2" className="cursor-pointer hover:r-6 transition-all" />
+                    <text x={`${20 + index * 20}%`} y="40%" textAnchor="middle" className="fill-white text-xs font-bold">{train.id}</text>
+                  </g>
+                ))}
+                
+                {/* Stations */}
+                <circle cx="20%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="40%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="60%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="80%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
+              </svg>
+              
+              <div className="absolute bottom-2 left-2 bg-black/50 text-white rounded px-2 py-1 text-xs">
+                Interactive Map - Click trains for details
               </div>
             </div>
           </CardContent>

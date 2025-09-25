@@ -34,7 +34,7 @@ const RouteManagement = () => {
 
   return (
     <MainLayout>
-      <div className="space-y-6">
+      <div className="space-y-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen text-white p-6 -m-6">
         {/* Header */}
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
@@ -48,41 +48,41 @@ const RouteManagement = () => {
         </div>
 
         {/* Route Management */}
-        <Card>
+        <Card className="bg-gray-800 border-gray-700 text-white">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-white">
               <Route className="h-5 w-5" />
               Current Route Management
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <MapPin className="h-6 w-6 text-blue-600 mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">Current Track</p>
-                <p className="font-bold">Main Line A</p>
+              <div className="text-center p-4 bg-blue-900/50 rounded-lg border border-blue-700">
+                <MapPin className="h-6 w-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-sm text-gray-300">Current Track</p>
+                <p className="font-bold text-white">Main Line A</p>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <Clock className="h-6 w-6 text-green-600 mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">ETA to Destination</p>
-                <p className="font-bold">14:23</p>
+              <div className="text-center p-4 bg-green-900/50 rounded-lg border border-green-700">
+                <Clock className="h-6 w-6 text-green-400 mx-auto mb-2" />
+                <p className="text-sm text-gray-300">ETA to Destination</p>
+                <p className="font-bold text-white">14:23</p>
               </div>
-              <div className="text-center p-4 bg-orange-50 rounded-lg">
-                <Zap className="h-6 w-6 text-orange-600 mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">Route Efficiency</p>
-                <p className="font-bold">89%</p>
+              <div className="text-center p-4 bg-orange-900/50 rounded-lg border border-orange-700">
+                <Zap className="h-6 w-6 text-orange-400 mx-auto mb-2" />
+                <p className="text-sm text-gray-300">Route Efficiency</p>
+                <p className="font-bold text-white">89%</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Live Map */}
-        <Card>
+        <Card className="bg-gray-800 border-gray-700 text-white">
           <CardHeader>
-            <CardTitle>Live Route Map</CardTitle>
+            <CardTitle className="text-white">Live Route Map</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 rounded-lg border border-slate-300 relative overflow-hidden">
+            <div className="h-64 bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-lg border border-gray-700 relative overflow-hidden">
               {/* Simplified map visualization */}
               <svg className="absolute inset-0 w-full h-full">
                 {/* Current route */}

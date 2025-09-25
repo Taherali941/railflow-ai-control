@@ -63,12 +63,12 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
       </CardHeader>
       
       <CardContent>
-        <div className="relative h-[480px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 border border-slate-300 shadow-inner">
+        <div className="relative h-[480px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 border border-blue-700 shadow-inner cursor-pointer">
           {/* Background grid pattern */}
-          <svg className="absolute inset-0 h-full w-full opacity-20">
+          <svg className="absolute inset-0 h-full w-full opacity-30">
             <defs>
               <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgb(203 213 225)" strokeWidth="1"/>
+                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgb(59 130 246)" strokeWidth="1"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
@@ -89,7 +89,7 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
             
             <line 
               x1="5%" y1="50%" x2="95%" y2="50%" 
-              stroke="rgb(59 130 246)" 
+              stroke="rgb(34 197 94)" 
               strokeWidth="4"
               filter="url(#glow)"
             />
@@ -133,23 +133,25 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
             
             {/* Enhanced Train markers with animation and glow */}
             {activeTrains.map((train) => (
-              <g key={train.id}>
+              <g key={train.id} className="cursor-pointer hover:opacity-80 transition-opacity">
                 <circle
                   cx={`${train.x}%`}
                   cy={`${train.y}%`}
                   r="8"
-                  className={`${getTrainColor(train.status)} stroke-background stroke-2 drop-shadow-lg`}
+                  className={`${getTrainColor(train.status)} stroke-white stroke-2 drop-shadow-lg`}
                   style={{
                     animation: train.status === "moving" ? "pulse 2s infinite" : "none",
                     filter: train.status === "moving" ? "drop-shadow(0 0 6px currentColor)" : "none"
                   }}
+                  onClick={() => window.location.href = `/train-details/${train.id}`}
                 />
                 <text
                   x={`${train.x}%`}
                   y={`${train.y - 12}%`}
                   textAnchor="middle"
-                  className="fill-gray-800 text-xs font-mono font-bold drop-shadow-sm"
+                  className="fill-white text-xs font-mono font-bold drop-shadow-md"
                   style={{ fontSize: '11px' }}
+                  onClick={() => window.location.href = `/train-details/${train.id}`}
                 >
                   {train.trainNumber}
                 </text>
@@ -161,7 +163,7 @@ export function NetworkMap({ trains = [] }: NetworkMapProps) {
                     fill="none"
                     stroke="rgb(34 197 94)"
                     strokeWidth="1"
-                    strokeOpacity="0.3"
+                    strokeOpacity="0.5"
                     style={{
                       animation: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite"
                     }}

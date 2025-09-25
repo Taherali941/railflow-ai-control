@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Clock, TrendingUp, AlertCircle, CheckCircle, Route } from "lucide-react";
+import { Calendar, Clock, TrendingUp, AlertCircle, CheckCircle, Route, Brain } from "lucide-react";
 
 const scheduleMetrics = [
   { label: "On-Time Performance", value: "94.2%", trend: "+2.1%", icon: CheckCircle, color: "text-status-success" },
@@ -164,6 +164,36 @@ export default function Scheduling() {
                 </div>
               ))}
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Optimized Schedule Management */}
+        <Card className="bg-card border-border">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Brain className="h-5 w-5" />
+              Optimized Schedule Management
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-3 gap-4 mb-4">
+              <div className="text-center p-4 bg-blue-50 rounded-lg">
+                <TrendingUp className="h-6 w-6 text-blue-600 mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground">Efficiency Gain</p>
+                <p className="font-bold">+12%</p>
+              </div>
+              <div className="text-center p-4 bg-green-50 rounded-lg">
+                <Clock className="h-6 w-6 text-green-600 mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground">Time Saved</p>
+                <p className="font-bold">8.5 min</p>
+              </div>
+              <div className="text-center p-4 bg-orange-50 rounded-lg">
+                <CheckCircle className="h-6 w-6 text-orange-600 mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground">On-Time Rate</p>
+                <p className="font-bold">96.2%</p>
+              </div>
+            </div>
+            <Button className="w-full">Apply Optimized Schedule</Button>
           </CardContent>
         </Card>
 

@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Bell, AlertTriangle, CheckCircle, Clock, Settings, Filter } from "lucide-react";
+import { Bell, AlertTriangle, CheckCircle, Clock, Settings, Filter, Brain } from "lucide-react";
 
 const alertStats = [
   { label: "Active Alerts", value: "7", color: "text-status-error" },
@@ -185,6 +185,34 @@ export default function Alerts() {
                 </div>
               </div>
             ))}
+          </CardContent>
+        </Card>
+
+        {/* AI Alert Suggestions */}
+        <Card className="bg-card border-border">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Brain className="h-5 w-5" />
+              AI Alert Suggestions
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="border border-border rounded-lg p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="font-medium">Predictive Maintenance Alert</h4>
+                <Badge className="bg-blue-600 text-white">AI Predicted</Badge>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">Track sensor on Eastern Line showing early wear patterns - suggest maintenance in 72 hours</p>
+              <Button size="sm">Create Alert</Button>
+            </div>
+            <div className="border border-border rounded-lg p-4 bg-gradient-to-r from-orange-50 to-red-50">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="font-medium">Weather Impact Warning</h4>
+                <Badge className="bg-orange-600 text-white">AI Suggested</Badge>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">Heavy rainfall predicted in 6 hours - recommend speed restrictions for Northern routes</p>
+              <Button size="sm">Create Alert</Button>
+            </div>
           </CardContent>
         </Card>
 

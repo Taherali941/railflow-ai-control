@@ -30,10 +30,10 @@ const TrainDetails = () => {
     previousStation: "North Bridge",
     departureTime: "13:45",
     schedule: [
-      { station: "North Bridge", arrival: "13:30", departure: "13:45", status: "completed" },
-      { station: "Junction B-7", arrival: "14:05", departure: "14:08", status: "current" },
-      { station: "Central Hub", arrival: "14:23", departure: "14:25", status: "upcoming" },
-      { station: "South Terminal", arrival: "14:45", departure: "14:47", status: "upcoming" },
+      { station: "North Bridge", arrival: "13:30", departure: "13:45", status: "completed", junction: "Junction A-2", platform: "Platform 1" },
+      { station: "Junction B-7", arrival: "14:05", departure: "14:08", status: "current", junction: "Junction B-7", platform: "Platform 3" },
+      { station: "Central Hub", arrival: "14:23", departure: "14:25", status: "upcoming", junction: "Junction C-1", platform: "Platform 2" },
+      { station: "South Terminal", arrival: "14:45", departure: "14:47", status: "upcoming", junction: "Junction D-4", platform: "Platform 5" },
     ]
   };
 
@@ -152,15 +152,28 @@ const TrainDetails = () => {
             </div>
             
             {/* Live Map */}
-            <div className="aspect-video bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 rounded-lg border border-border p-6 flex items-center justify-center">
-              <div className="text-center space-y-3">
-                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
-                  <MapPin className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Live GPS Tracking</h3>
-                  <p className="text-sm text-muted-foreground">Real-time train position on railway network</p>
-                </div>
+            <div className="aspect-video bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 rounded-lg border border-blue-700 relative overflow-hidden">
+              <svg className="absolute inset-0 w-full h-full">
+                {/* Railway lines */}
+                <line x1="10%" y1="50%" x2="90%" y2="50%" stroke="rgb(34 197 94)" strokeWidth="3" />
+                <line x1="30%" y1="50%" x2="30%" y2="20%" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <line x1="70%" y1="50%" x2="70%" y2="80%" stroke="rgb(34 197 94)" strokeWidth="2" />
+                
+                {/* Junction markers */}
+                <circle cx="30%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="50%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
+                <circle cx="70%" cy="50%" r="4" fill="white" stroke="rgb(34 197 94)" strokeWidth="2" />
+                
+                {/* Current train position */}
+                <circle cx="40%" cy="50%" r="6" fill="rgb(59 130 246)" stroke="white" strokeWidth="2" className="animate-pulse" />
+                <text x="40%" y="35%" textAnchor="middle" className="fill-white text-xs font-bold">{trainData.trainNumber}</text>
+              </svg>
+              
+              <div className="absolute bottom-2 left-2 bg-black/50 text-white rounded px-2 py-1 text-xs">
+                Live Position: {trainData.currentLocation}
+              </div>
+              <div className="absolute top-2 right-2 bg-black/50 text-white rounded px-2 py-1 text-xs">
+                Speed: {trainData.speed} km/h
               </div>
             </div>
           </CardContent>
@@ -177,7 +190,7 @@ const TrainDetails = () => {
           <CardContent>
             <div className="space-y-3">
               {trainData.schedule.map((stop, index) => (
-                <div key={index} className={`flex items-center justify-between p-3 rounded-lg ${
+                <div key={index} className={`flex items-center justify-between p-4 rounded-lg ${
                   stop.status === 'current' ? 'bg-blue-50 border border-blue-200' :
                   stop.status === 'completed' ? 'bg-green-50 border border-green-200' :
                   'bg-muted/20'
@@ -190,12 +203,14 @@ const TrainDetails = () => {
                     }`} />
                     <div>
                       <p className="font-medium">{stop.station}</p>
-                      <p className="text-sm text-muted-foreground capitalize">{stop.status}</p>
+                      <p className="text-sm text-muted-foreground">{stop.junction}</p>
+                      <p className="text-xs text-muted-foreground capitalize">{stop.status} • {stop.platform}</p>
                     </div>
                   </div>
                   <div className="text-right">
                     <p className="font-mono text-sm">Arr: {stop.arrival}</p>
                     <p className="font-mono text-sm">Dep: {stop.departure}</p>
+                    <p className="text-xs text-muted-foreground">Optimized timing</p>
                   </div>
                 </div>
               ))}

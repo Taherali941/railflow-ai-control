@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Shield, AlertTriangle, CheckCircle, Clock, MapPin, Zap } from "lucide-react";
+import { Shield, AlertTriangle, CheckCircle, Clock, MapPin, Zap, Brain } from "lucide-react";
 
 const riskLevels = [
   { level: "Low", count: 12, color: "bg-status-success", description: "Normal operations" },
@@ -147,6 +147,34 @@ export default function CollisionDetection() {
                 </div>
               </div>
             ))}
+          </CardContent>
+        </Card>
+
+        {/* AI Suggestions */}
+        <Card className="bg-card border-border">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Brain className="h-5 w-5" />
+              AI Safety Suggestions
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="border border-border rounded-lg p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="font-medium">Speed Reduction Protocol</h4>
+                <Badge className="bg-blue-600 text-white">AI Recommended</Badge>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">Implement automatic speed reduction when trains approach within 2km of each other</p>
+              <Button size="sm">Apply Suggestion</Button>
+            </div>
+            <div className="border border-border rounded-lg p-4 bg-gradient-to-r from-green-50 to-emerald-50">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="font-medium">Route Optimization</h4>
+                <Badge className="bg-green-600 text-white">AI Recommended</Badge>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">Reroute TR-008 via alternative track to prevent potential conflict</p>
+              <Button size="sm">Apply Suggestion</Button>
+            </div>
           </CardContent>
         </Card>
 
